@@ -28,13 +28,7 @@
 
       <v-toolbar-title>Application</v-toolbar-title>
     </v-app-bar> -->
-    <v-app-bar
-      app
-      color="primary"
-      dark
-      shrink-on-scroll
-      src="mountains.jpg"
-    >
+    <v-app-bar app color="primary" dark shrink-on-scroll src="mountains.jpg">
       <template v-slot:img="{ props }">
         <v-img
           v-bind="props"
@@ -64,6 +58,7 @@
       <!--  -->
       <v-container>
         <router-view></router-view>
+        <snackbar />
       </v-container>
     </v-main>
   </v-app>
@@ -71,6 +66,9 @@
 
 <script>
 export default {
+  components: {
+    snackbar: require("@/components/Shared/Snackbar.vue").default,
+  },
   data() {
     return {
       drawer: null,
