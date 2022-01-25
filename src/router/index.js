@@ -1,27 +1,30 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
+import Vue from "vue";
+import VueRouter from "vue-router";
 // import Home from '../views/Home.vue'
-import Todo from '../views/Todo.vue'
-import About from '../views/About.vue'
+import Todo from "../views/Todo.vue";
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 const routes = [
   {
-    path: '/',
-    name: 'Home',
-    component: Todo
+    path: "/",
+    name: "Home",
+    component: Todo,
   },
   {
-    path: '/about',
-    name: 'About',
-    component: About
-  }
-  
-]
+    path: "/about",
+    name: "About",
+    component: () => import("../views/About.vue"),
+  },
+];
 
 const router = new VueRouter({
-  routes
-})
+  routes,
+});
 
-export default router
+router.beforeEach((to, from, next) => {
+  document.title = `Vuetify Todo - ${to.name}`;
+  next();
+});
+
+export default router;

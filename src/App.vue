@@ -1,14 +1,23 @@
 <template>
   <v-app id="inspire">
-    <v-navigation-drawer v-model="drawer" app>
-      <v-list-item>
-        <v-list-item-content>
-          <v-list-item-title class="text-h6"> Vuetify Todo </v-list-item-title>
-          <v-list-item-subtitle> Best Todo Ever! </v-list-item-subtitle>
-        </v-list-item-content>
-      </v-list-item>
-
-      <v-divider></v-divider>
+    <v-navigation-drawer :mobile-breakpoint="768" v-model="drawer" app>
+      <v-img
+        class="pa-3 pt-4"
+        height="150"
+        src="mountains.jpg"
+        gradient="to top right, rgba(19,84,122,.5), rgba(128,208,199,.8)"
+      >
+        <v-avatar size="70" class="mb-3">
+          <img
+            src="https://dvyvvujm9h0uq.cloudfront.net/com/articles/1525891879-886386-sam-burriss-457746-unsplashjpg.jpg"
+            alt="Mawi"
+          />
+        </v-avatar>
+        <div class="white--text text-subititle-1 font-weight-bold">
+          Brian Mawira
+        </div>
+        <div class="white--text -text-subtitle-2">rodgers_B.R.Y</div>
+      </v-img>
 
       <v-list dense nav>
         <v-list-item v-for="item in items" :key="item.title" link :to="item.to">
@@ -23,7 +32,14 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-app-bar app color="primary" dark shrink-on-scroll src="mountains.jpg">
+    <v-app-bar
+      height="150"
+      app
+      color="primary"
+      dark
+      shrink-on-scroll
+      src="mountains.jpg"
+    >
       <template v-slot:img="{ props }">
         <v-img
           v-bind="props"
@@ -32,13 +48,16 @@
         </v-img>
       </template>
 
-      <v-container class="pa-0">
+      <v-container class="pa-0 header-container">
         <v-row>
           <v-app-bar-nav-icon @click="drawer = !drawer" class="mt-2" />
           <v-spacer />
         </v-row>
         <v-row>
-          <v-app-bar-title class="ml-4">Vuetify Todo</v-app-bar-title>
+          <v-app-bar-title class="ml-4 text-h4">Vuetify Todo</v-app-bar-title>
+        </v-row>
+        <v-row>
+          <live-date-time />
         </v-row>
       </v-container>
 
@@ -61,6 +80,7 @@ export default {
   components: {
     snackbar: require("@/components/Shared/Snackbar.vue").default,
     search: require("./components/Tools/Search.vue").default,
+    "live-date-time": require("./components/Tools/LiveDateTime.vue").default,
   },
 
   data() {
@@ -75,3 +95,8 @@ export default {
   },
 };
 </script>
+
+<style lang="sass">
+.header-container
+  max-width: none !important
+</style>
