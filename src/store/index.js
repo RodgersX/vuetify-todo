@@ -5,6 +5,8 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    appTitle: process.env.VUE_APP_TITLE,
+    search: null,
     tasks: [
       { id: 1, title: "Wake Up", done: false, dueDate: "2021-10-26" },
       { id: 2, title: "Get Bananas", done: false, dueDate: "2021-10-27" },
@@ -14,7 +16,6 @@ export default new Vuex.Store({
       show: false,
       text: "",
     },
-    search: null,
   },
   mutations: {
     setSearch(state, value) {
