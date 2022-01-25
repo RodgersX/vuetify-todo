@@ -34,11 +34,11 @@
 
       <v-container class="pa-0">
         <v-row>
-          <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+          <v-app-bar-nav-icon @click="drawer = !drawer" class="mt-2" />
           <v-spacer />
         </v-row>
         <v-row>
-          <v-app-bar-title class="mx-4">Vuetify Todo</v-app-bar-title>
+          <v-app-bar-title class="ml-4">Vuetify Todo</v-app-bar-title>
         </v-row>
       </v-container>
 
