@@ -85,6 +85,10 @@ export default {
     "live-date-time": require("./components/Tools/LiveDateTime.vue").default,
   },
 
+  mounted() {
+    this.$store.dispatch('getTasks')
+  },
+  
   data() {
     return {
       drawer: null,
