@@ -72,6 +72,13 @@ export default {
             this.dialogs.delete = true;
           },
         },
+        {
+          title: "Sort",
+          icon: "mdi-sort",
+          click() {
+            this.$store.commit("toggleSorting");
+          },
+        },
       ],
       dialogs: {
         edit: false,

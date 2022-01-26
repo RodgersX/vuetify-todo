@@ -7,6 +7,7 @@ export default new Vuex.Store({
   state: {
     appTitle: process.env.VUE_APP_TITLE,
     search: null,
+    sorting: false,
     tasks: [
       { id: 1, title: "Wake Up", done: false, dueDate: "2021-10-26" },
       { id: 2, title: "Get Bananas", done: false, dueDate: "2021-10-27" },
@@ -53,6 +54,10 @@ export default new Vuex.Store({
       task.dueDate = payload.dueDate;
     },
 
+    setTasks(state, tasks) {
+      state.tasks = tasks;
+    },
+
     showSnackbar(state, text) {
       let timeout = 0;
       if (state.snackbar.show) {
@@ -64,8 +69,13 @@ export default new Vuex.Store({
         state.snackbar.text = text;
       }, timeout);
     },
+
     hideSnackbar(state) {
       state.snackbar.show = false;
+    },
+
+    toggleSorting(state) {
+      state.sorting = !state.sorting;
     },
   },
   actions: {
