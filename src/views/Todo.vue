@@ -11,7 +11,6 @@
 <script>
 export default {
   components: {
-    "add-task-field": require("@/components/Todo/AddTask.vue").default,
     "list-tasks": require("@/components/Todo/ListTask.vue").default,
     "no-tasks": require("@/components/Todo/NoTasks.vue").default,
     "done-sorting": require("../components/Todo/ButtonDoneSorting.vue").default,

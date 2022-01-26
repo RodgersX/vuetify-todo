@@ -6,6 +6,7 @@
     @blur="searchClosed = true"
     class="mt-1 expanding-search"
     :class="{ closed: searchClosed && !$store.state.search }"
+    :disabled="$store.state.sorting"
     placeholder="search"
     dense
     clearable

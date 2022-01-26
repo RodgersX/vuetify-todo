@@ -18,6 +18,7 @@ export default new Vuex.Store({
       text: "",
     },
   },
+
   mutations: {
     setSearch(state, value) {
       state.search = value;
@@ -140,6 +141,7 @@ export default new Vuex.Store({
       commit("setTasks", tasks);
     },
   },
+
   getters: {
     tasksFiltered(state) {
       if (!state.search) {

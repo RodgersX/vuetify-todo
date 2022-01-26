@@ -33,25 +33,25 @@
     </v-navigation-drawer>
 
     <v-app-bar
-      height="150"
+      :height="$route.path == '/' ? '238' : '170'"
       app
       color="primary"
       dark
-      shrink-on-scroll
       src="mountains.jpg"
     >
       <template v-slot:img="{ props }">
         <v-img
           v-bind="props"
-          gradient="to top right, rgba(19,84,122,.5), rgba(128,208,199,.8)"
+          gradient="to top right, rgba(19,84,122,.8), rgba(128,208,199,.8)"
         >
         </v-img>
       </template>
 
       <v-container class="pa-0 header-container">
         <v-row>
-          <v-app-bar-nav-icon @click="drawer = !drawer" class="mt-2" />
+          <v-app-bar-nav-icon @click="drawer = !drawer" />
           <v-spacer />
+          <search />
         </v-row>
         <v-row>
           <v-app-bar-title class="ml-4 text-h4">{{
@@ -61,9 +61,17 @@
         <v-row>
           <live-date-time />
         </v-row>
-      </v-container>
 
-      <search />
+        <v-row
+          v-if="$route.path == '/'"
+          class="d-flex align-center justify-space-between"
+        >
+          <add-task-field class="shrink" />
+          <v-btn icon @click="toggleSorting">
+            <v-icon>mdi-sort</v-icon>
+          </v-btn>
+        </v-row>
+      </v-container>
     </v-app-bar>
 
     <v-main>
@@ -77,18 +85,18 @@
 </template>
 
 <script>
-import Search from "./components/Tools/Search.vue";
 export default {
   components: {
     snackbar: require("@/components/Shared/Snackbar.vue").default,
     search: require("./components/Tools/Search.vue").default,
     "live-date-time": require("./components/Tools/LiveDateTime.vue").default,
+    "add-task-field": require("@/components/Todo/AddTask.vue").default,
   },
 
   mounted() {
-    this.$store.dispatch('getTasks')
+    this.$store.dispatch("getTasks");
   },
-  
+
   data() {
     return {
       drawer: null,
@@ -98,6 +106,16 @@ export default {
         { title: "About", icon: "mdi-help-box", to: "/about" },
       ],
     };
+  },
+
+  methods: {
+    toggleSorting() {
+      if (!this.$store.state.search) {
+        this.$store.commit("toggleSorting");
+      } else {
+        this.$store.commit("showSnackbar", "How Dare You!!");
+      }
+    },
   },
 };
 </script>
